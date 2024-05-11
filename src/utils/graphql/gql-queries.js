@@ -137,6 +137,17 @@ export const GET_CATEGORIES = gql`
   }
 `;
 
+export const VERIFY_TOKEN = gql`
+  query VerifyToken {
+    verifyToken {
+      code
+      exp
+      iat
+      id
+    }
+  }
+`;
+
 export const GET_BRANDS = gql`
   query Query {
     getBrands {
