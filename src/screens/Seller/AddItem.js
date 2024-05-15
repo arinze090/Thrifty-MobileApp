@@ -1,5 +1,6 @@
 import {
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -91,9 +92,9 @@ const AddItem = () => {
     }).then(res => {
       console.log('image', res);
       setCoverImageError('');
-      setCoverImage(res[0]?.sourceURL);
+      setCoverImage(res[0]?.path);
 
-      res.map(cur => otherSnapshots.push(cur.sourceURL));
+      res.map(cur => otherSnapshots.push(cur.path));
     });
   };
 
@@ -254,12 +255,14 @@ const AddItem = () => {
               }))}
               Icon={() => {
                 return (
-                  <Ionicons
-                    name="chevron-down-outline"
-                    size={24}
-                    color="#666"
-                    style={{marginTop: 10, marginRight: 10}}
-                  />
+                  Platform.OS == 'ios' && (
+                    <Ionicons
+                      name="chevron-down-outline"
+                      size={24}
+                      color="#666"
+                      style={{marginTop: 10, marginRight: 10}}
+                    />
+                  )
                 );
               }}
             />
@@ -357,12 +360,14 @@ const AddItem = () => {
               }))}
               Icon={() => {
                 return (
-                  <Ionicons
-                    name="chevron-down-outline"
-                    size={24}
-                    color="#666"
-                    style={{marginTop: 10, marginRight: 10}}
-                  />
+                  Platform.OS == 'ios' && (
+                    <Ionicons
+                      name="chevron-down-outline"
+                      size={24}
+                      color="#666"
+                      style={{marginTop: 10, marginRight: 10}}
+                    />
+                  )
                 );
               }}
             />

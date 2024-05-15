@@ -27,6 +27,7 @@ import {
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
 import {COLORS} from '../../theme/themes';
 import {
+  RNToast,
   calculatePercentage,
   setPriceTo2DecimalPlaces,
   timeAgo,
@@ -38,7 +39,7 @@ import BottomSheet from '../../components/bottomSheet/BottomSheet';
 import FormInput from '../../components/form/FormInput';
 import {setUserDeliveryAddress} from '../../redux/features/user/userSlice';
 import ScrollViewSpace from '../../components/common/ScrollViewSpace';
-import verifyToken from '../../components/hoc/verifyUserToken';
+import verifyToken from '../../components/hoc/verifyToken';
 
 const PaymentScreen = ({navigation, route}) => {
   const item = route.params;
@@ -53,7 +54,7 @@ const PaymentScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
 
   const state = useSelector(state => state);
-  const loggedUser = state.user.user.user;
+  const loggedUser = state?.user?.user?.user;
   console.log('loggedUser', loggedUser);
   console.log('state', state);
 
@@ -70,25 +71,42 @@ const PaymentScreen = ({navigation, route}) => {
 
   const [totalFee, setTotalFee] = useState();
 
-  const [fullName, setFullName] = useState('');
-  const [country, setCountry] = useState('');
-  const [address, setAddress] = useState('');
+  const [fullName, setFullName] = useState(
+    reduxDeliveryAddress?.name ? reduxDeliveryAddress?.name : '',
+  );
+  const [deliveryPhoneNumber, setDeliveryPhoneNumber] = useState(
+    reduxDeliveryAddress?.deliveryPhoneNumber
+      ? reduxDeliveryAddress?.deliveryPhoneNumber
+      : '',
+  );
+  const [deliveryAddress, setDeliveryAddress] = useState(
+    reduxDeliveryAddress?.address ? reduxDeliveryAddress?.address : '',
+  );
   const [postCode, setPostCode] = useState('');
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(
+    reduxDeliveryAddress?.city ? reduxDeliveryAddress?.city : '',
+  );
+  const [deliveryState, setDeliveryState] = useState(
+    reduxDeliveryAddress?.deliveryState
+      ? reduxDeliveryAddress?.deliveryState
+      : '',
+  );
 
   // Error states
   const [fullNameError, setFullNameError] = useState('');
-  const [countryError, setCountryError] = useState('');
+  const [deliveryPhoneNumberError, setDeliveryPhoneNumberError] = useState('');
   const [addressError, setAddressError] = useState('');
   const [postCodeError, setPostCodeError] = useState('');
   const [cityError, setCityError] = useState('');
+  const [deliveryStateError, setDeliveryStateError] = useState('');
 
   const saveReduxAddress = {
     name: fullName,
-    address: address,
+    address: deliveryAddress,
     postalCode: postCode,
     city: city,
-    country: country,
+    deliveryPhoneNumber: deliveryPhoneNumber,
+    deliveryState: deliveryState,
   };
 
   const paymentAmount = item?.price;
@@ -97,7 +115,7 @@ const PaymentScreen = ({navigation, route}) => {
   const paymentReference =
     state?.user?.user?.user?.id + '_' + paymentAmount + '_' + time;
   const platformFee = calculatePercentage(paymentAmount, 10);
-  const overallFee = calculatePercentage(paymentAmount + platformFee, 10);
+  const overallFee = paymentAmount + platformFee;
 
   // Apollo Mutation
   const [
@@ -131,15 +149,15 @@ const PaymentScreen = ({navigation, route}) => {
       // },
 
       delivery_details: {
-        additional_phone_number: '',
+        additional_phone_number: reduxDeliveryAddress?.deliveryPhoneNumber,
         apt_or_suite_number: '',
-        city: 'Lagos',
+        city: reduxDeliveryAddress?.city,
         special_instructions: '',
-        state: 'Lagos',
-        street_address: '1222, tunde lawal',
+        state: reduxDeliveryAddress?.deliveryState,
+        street_address: reduxDeliveryAddress?.address,
         zip_code: '',
       },
-      delivery_fee: 2500,
+      delivery_fee: 4000,
       item: item?.id,
       qty: 1,
       price_paid: paymentAmount,
@@ -156,10 +174,29 @@ const PaymentScreen = ({navigation, route}) => {
         variables: {inputData: data},
         onCompleted: data => {
           console.log('api success', data);
+
+          if (data?.createSingleOrder?.success) {
+            // Alert the user that the transaction was successful
+            Alert.alert(
+              'Order Placed!',
+              'Your order was placed successfully 😇. Thank you!',
+            );
+            RNToast(Toast, 'Hurray! Your order was placed successfully! 😇');
+            navigation.navigate('HomeOrders');
+          } else {
+            Alert.alert(
+              'Order Failed',
+              'Something went wrong, we could not place your order at the moment, please try again. If you get this message again, please logout, login and retry. Thank you',
+            );
+          }
         },
 
         onError: error => {
           console.log('api eorrr', error);
+          Alert.alert(
+            'Order Failed',
+            'Something went wrong, we could not place your order at the moment, please try again. If you get this message again, please logout, login and retry. Thank you',
+          );
         },
       });
     } catch (error) {
@@ -181,6 +218,25 @@ const PaymentScreen = ({navigation, route}) => {
     );
   };
 
+  const saveDeliveryAddressToRedux = () => {
+    console.log('presssed');
+    if (!fullName && !city && !deliveryState && !deliveryAddress) {
+      setCityError('Please add this field');
+      setDeliveryStateError('Add delivery state');
+      setFullNameError('Provide your full name');
+      setAddressError('Please provide your address');
+    } else if (!city) {
+      setCityError('Please add this field');
+    } else if (!deliveryState) {
+      setDeliveryStateError('Add delivery state');
+    } else if (!deliveryAddress) {
+      setAddressError('Please provide your address');
+    } else {
+      dispatch(setUserDeliveryAddress(saveReduxAddress));
+      refRBSheet.current.close();
+    }
+  };
+
   const DisplayAddressForm = () => {
     return (
       <KeyboardAvoidingView>
@@ -196,6 +252,7 @@ const PaymentScreen = ({navigation, route}) => {
               onChangeText={text => {
                 setFullName(text);
                 setFormError('');
+                setFullNameError('');
               }}
               width={1.2}
             />
@@ -204,21 +261,23 @@ const PaymentScreen = ({navigation, route}) => {
             ) : null}
           </View>
           <View style={styles.auth}>
-            <Text style={styles.inputTitle}>Country</Text>
+            <Text style={styles.inputTitle}>Phone Number</Text>
             <FormInput
-              placeholder="Enter Country"
+              placeholder="Enter Phone number"
               placeholderTextColor="#666"
               autoCapitalize="none"
-              keyboardType="default"
-              value={country}
+              keyboardType="number-pad"
+              value={deliveryPhoneNumber}
               onChangeText={text => {
-                setCountry(text);
+                setDeliveryPhoneNumber(text);
                 setFormError('');
               }}
               width={1.2}
             />
-            {countryError ? (
-              <Text style={styles.validationError}>{countryError}</Text>
+            {deliveryPhoneNumberError ? (
+              <Text style={styles.validationError}>
+                {deliveryPhoneNumberError}
+              </Text>
             ) : null}
           </View>
           <View style={styles.auth}>
@@ -228,10 +287,11 @@ const PaymentScreen = ({navigation, route}) => {
               placeholderTextColor="#666"
               autoCapitalize="none"
               keyboardType="default"
-              value={address}
+              value={deliveryAddress}
               onChangeText={text => {
-                setAddress(text);
+                setDeliveryAddress(text);
                 setFormError('');
+                setAddressError('');
               }}
               width={1.2}
               multiline={true}
@@ -273,6 +333,7 @@ const PaymentScreen = ({navigation, route}) => {
               onChangeText={text => {
                 setCity(text);
                 setFormError('');
+                setCityError('');
               }}
               width={1.2}
             />
@@ -280,14 +341,29 @@ const PaymentScreen = ({navigation, route}) => {
               <Text style={styles.validationError}>{cityError}</Text>
             ) : null}
           </View>
+          <View style={styles.auth}>
+            <Text style={styles.inputTitle}>State</Text>
+            <FormInput
+              placeholder="Enter State"
+              placeholderTextColor="#666"
+              autoCapitalize="none"
+              keyboardType="default"
+              value={deliveryState}
+              onChangeText={text => {
+                setDeliveryState(text);
+                setFormError('');
+                setDeliveryStateError('');
+              }}
+              width={1.2}
+            />
+            {deliveryStateError ? (
+              <Text style={styles.validationError}>{deliveryStateError}</Text>
+            ) : null}
+          </View>
           <View style={{marginTop: 20}}>
             <FormButton
-              disabled={!address || !fullName}
               title={'Save Address'}
-              onPress={() => {
-                dispatch(setUserDeliveryAddress(saveReduxAddress));
-                refRBSheet.current.close();
-              }}
+              onPress={saveDeliveryAddressToRedux}
             />
           </View>
           <ScrollViewSpace />
@@ -372,10 +448,12 @@ const PaymentScreen = ({navigation, route}) => {
             <View style={{marginTop: 10, marginBottom: 20}}>
               <Text>{reduxDeliveryAddress?.name}</Text>
               <Text>
-                {reduxDeliveryAddress?.address}, {reduxDeliveryAddress?.city}
+                {reduxDeliveryAddress?.address}, {reduxDeliveryAddress?.city}{' '}
+                {'\n'}
+                {reduxDeliveryAddress?.deliveryState}
               </Text>
 
-              <Text>{reduxDeliveryAddress?.country}</Text>
+              <Text>{reduxDeliveryAddress?.deliveryPhoneNumber}</Text>
             </View>
           )}
         </View>
@@ -445,7 +523,7 @@ const PaymentScreen = ({navigation, route}) => {
         <Paystack
           paystackKey={'pk_test_b2f376cc25aa858bcff588c2ac5ebe9e80f4f7fe'}
           paystackSecretKey={'sk_test_a1e9bbf95dc01d06a9b44df348e7fac4d3e02620'}
-          amount={paymentAmount}
+          amount={overallFee}
           currency="NGN"
           billingEmail={loggedUser?.email}
           activityIndicatorColor="green"
@@ -538,5 +616,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: COLORS.appTextColor,
     fontWeight: '700',
+  },
+  validationError: {
+    color: 'red',
+    fontWeight: '500',
+    marginBottom: 15,
+    fontSize: 13,
+    // textAlign: 'center',
   },
 });

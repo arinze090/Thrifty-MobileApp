@@ -205,6 +205,58 @@ const HomeStack = ({navigation}) => (
         ),
       }}
     />
+    <Stack.Screen
+      name="HomeOrders"
+      component={OrdersScreen}
+      options={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerTitle: 'My Orders',
+        headerStyle: {
+          backgroundColor: COLORS.appBackground,
+        },
+        headerTitleStyle: {
+          color: COLORS.appTextColor,
+        },
+        headerLeft: () => (
+          <View style={{marginLeft: 10}}>
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              // backgroundColor={COLORS.appTextColor}
+              color={COLORS.appTextColor}
+              onPress={() => navigation.navigate('HomeScreen')}
+            />
+          </View>
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="OrderDetails"
+      component={OrderDetailsScreen}
+      options={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerTitle: '',
+        headerStyle: {
+          backgroundColor: COLORS.appBackground,
+        },
+        headerTitleStyle: {
+          color: COLORS.appTextColor,
+        },
+        headerLeft: () => (
+          <View style={{marginLeft: 10}}>
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              // backgroundColor={COLORS.appTextColor}
+              color={COLORS.appTextColor}
+              onPress={() => navigation.navigate('HomeOrders')}
+            />
+          </View>
+        ),
+      }}
+    />
   </Stack.Navigator>
 );
 

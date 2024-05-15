@@ -78,7 +78,7 @@ android {
         applicationId "com.thrifty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
+        versionCode 8
         versionName "1.3"
     }
     signingConfigs {

@@ -37,7 +37,7 @@ const FormInput = ({
         containerStyle,
         {
           width: windowWidth / (width || 1.2),
-          height: windowHeight / (height || 19),
+          height: Platform.OS == 'android' ? 46 : windowHeight / (height || 19),
         },
       ]}
       onPress={onPress}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.appBackground,
     borderWidth: 1,
     borderColor: '#444',
-    height: windowHeight / 16,
+    height: Platform.OS == 'android' ? 46 : windowHeight / 16,
   },
   leftIcon: {
     marginRight: 10,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     width: '100%',
     fontSize: 14,
     color: COLORS.appTextColor,
-    height: Platform.OS == 'android' ? windowHeight / 19 : null,
+    height: Platform.OS == 'android' ? 40 : null,
     marginLeft: 10,
     // backgroundColor: 'red',
   },

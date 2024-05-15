@@ -1,10 +1,10 @@
 import {connect, useDispatch, useSelector} from 'react-redux';
 import React, {useEffect} from 'react';
-import {VERIFY_TOKEN} from '@utils/graphql/gql-queries';
 import {useLazyQuery} from '@apollo/client';
 import {useNavigation} from '@react-navigation/native';
 import {Alert} from 'react-native';
-import {signOut} from '@store/features/user/userSlice';
+import {VERIFY_TOKEN} from '../../utils/graphql/gql-queries';
+import {signOutUser} from '../../redux/features/user/userSlice';
 
 // This function takes a component...
 export default function verifyToken(WrappedComponent) {
@@ -32,7 +32,7 @@ export default function verifyToken(WrappedComponent) {
           const token = await verifyTokenGQL();
           console.log('hoc', token);
           if (token?.data?.verifyToken?.code !== 200) {
-            dispatch(signOut());
+            dispatch(signOutUser());
             Alert.alert('Session Expired', 'Please login to continue');
             navigation.navigate('Login');
           }

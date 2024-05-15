@@ -11,6 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {windowWidth} from '../../utils/Dimensions';
 import {COLORS} from '../../theme/themes';
+import FormButton from '../form/FormButton';
 
 const CategorySearchBar = props => {
   return (
@@ -65,14 +66,14 @@ const CategorySearchBar = props => {
       {/* cancel button, depending on whether the search bar is clicked or not */}
       {props?.clicked && (
         <View>
-          <Button
+          <FormButton
             title="Cancel"
             onPress={() => {
               Keyboard.dismiss();
               props?.setClicked(false);
               props?.setSearchPhrase('');
             }}
-            color={COLORS.appTextColor}
+            width={6}
           />
         </View>
       )}

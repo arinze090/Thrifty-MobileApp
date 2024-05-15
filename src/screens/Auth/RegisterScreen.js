@@ -258,7 +258,7 @@ const RegisterScreen = ({navigation, props, route}) => {
               defaultValue={value}
               defaultCode={phoneCountry}
               layout="first"
-              placeholderTextColor={COLORS.appTextColor}
+              placeholderTextColor={'black'}
               onChangeText={txt => {
                 setValue(txt);
               }}
@@ -287,16 +287,19 @@ const RegisterScreen = ({navigation, props, route}) => {
               textContainerStyle={{
                 backgroundColor: COLORS.appBackground,
                 height: windowHeight / 17,
+                color: 'black',
               }}
               codeTextStyle={{
                 height: windowHeight / 34,
                 marginTop: 5,
-                color: COLORS.appTextColor,
+                color: 'black',
               }}
-              textInputStyle={{color: COLORS.appTextColor}}
+              textInputStyle={{color: COLORS.appBackground}}
               textInputProps={{
-                placeholderTextColor: COLORS.appTextColor,
+                placeholderTextColor: 'black',
                 keyboardType: 'numeric',
+                color: 'black',
+                height: 44,
               }}
             />
             {phoneError ? (

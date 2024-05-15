@@ -80,7 +80,7 @@ const Collection = () => {
         </View>
       ) : (
         <View>
-          <Text>No products for now, come back later</Text>
+          <Text>Please wait while we fetch our products</Text>
         </View>
       )}
     </View>

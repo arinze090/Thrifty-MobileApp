@@ -1576,3 +1576,89 @@ export const CREATE_SUBCATEGORY = gql`
     }
   }
 `;
+
+export const UPDATE_TRACKING_PROGRESS = gql`
+  mutation Mutation($orderId: ID!, $trackingLevel: Int!) {
+    updateTrackingProgress(orderId: $orderId, trackingLevel: $trackingLevel) {
+      code
+      message
+      success
+      order {
+        id
+        is_accepted
+        is_delivered
+        is_recieved
+        is_refunded
+        is_rejected
+        is_sent_out
+        is_settled
+        item_quantity {
+          item
+          qty
+        }
+        owner {
+          id
+          email
+          country
+          mobile
+          lastname
+          isVerified
+          firstname
+          gender
+        }
+        price_breakdown {
+          delivery_fee
+          platform_fee
+          platform_percentage
+          total_accumulated_price
+          total_items_price
+        }
+        price_used_breakdown
+        refund_reason
+        rejection_reason
+        settlement_reason
+        total_price_paid
+        delivery_details {
+          additional_phone_number
+          apt_or_suite_number
+          city
+          special_instructions
+          state
+          street_address
+          zip_code
+        }
+        createdAt
+        accepted_by
+        sellers
+        items {
+          color
+          condition {
+            createdAt
+            description
+            id
+            name
+          }
+          cover_image
+          createdAt
+          description
+          id
+          item_type
+          min_offer
+          name
+          other_snapshots
+          price
+          quantity_in_stock
+          size
+          brand {
+            abbreviation
+            createdAt
+            description
+            id
+            logo
+            name
+          }
+        }
+      }
+    }
+  }
+`;

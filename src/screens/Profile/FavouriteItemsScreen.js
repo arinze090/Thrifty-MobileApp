@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import ThriftyCard from '../../components/cards/ThriftyCard';
 import {COLORS} from '../../theme/themes';
 import {windowWidth} from '../../utils/Dimensions';
+import NoOrderAnimation from '../../components/animations/NoOrderAnimation';
 
 const FavouriteItemsScreen = ({navigation}) => {
   const state = useSelector(state => state);
@@ -27,7 +28,10 @@ const FavouriteItemsScreen = ({navigation}) => {
         </View>
       ) : (
         <View>
-          <Text>No products for now, come back later</Text>
+          <Text style={styles.nothingToShow}>
+            You currently don't have saved items
+          </Text>
+          <NoOrderAnimation />
         </View>
       )}
     </View>
@@ -52,5 +56,13 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     padding: 8,
     // margin: 10,
+  },
+  nothingToShow: {
+    textAlign: 'center',
+    color: 'black',
+    fontWeight: '700',
+    fontSize: 16,
+    justifyContent: 'center',
+    marginTop: 30,
   },
 });

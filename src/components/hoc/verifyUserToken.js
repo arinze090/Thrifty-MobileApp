@@ -7,7 +7,7 @@ import Toast from 'react-native-toast-message';
 import {Alert} from 'react-native';
 
 // This function takes a component...
-export default function verifyToken(WrappedComponent) {
+export default function verifyUserToken(WrappedComponent) {
   return props => {
     const tokenSavedInRedux = useSelector(state => state?.user?.user?.token);
     console.log('tokenSavedInRedux', tokenSavedInRedux);

@@ -1,5 +1,6 @@
 import {
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -158,12 +159,14 @@ const CreateItemTypeScreen = ({navigation}) => {
             }))}
             Icon={() => {
               return (
-                <Ionicons
-                  name="chevron-down-outline"
-                  size={24}
-                  color="#666"
-                  style={{marginTop: 10, marginRight: 10}}
-                />
+                Platform.OS == 'ios' && (
+                  <Ionicons
+                    name="chevron-down-outline"
+                    size={24}
+                    color="#666"
+                    style={{marginTop: 10, marginRight: 10}}
+                  />
+                )
               );
             }}
           />
@@ -189,12 +192,14 @@ const CreateItemTypeScreen = ({navigation}) => {
               }))}
               Icon={() => {
                 return (
-                  <Ionicons
-                    name="chevron-down-outline"
-                    size={24}
-                    color="#666"
-                    style={{marginTop: 10, marginRight: 10}}
-                  />
+                  Platform.OS == 'ios' && (
+                    <Ionicons
+                      name="chevron-down-outline"
+                      size={24}
+                      color="#666"
+                      style={{marginTop: 10, marginRight: 10}}
+                    />
+                  )
                 );
               }}
             />

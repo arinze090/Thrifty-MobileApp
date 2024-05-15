@@ -72,7 +72,7 @@ const ProfileScreen = ({navigation}) => {
           navigation.navigate('EditProfile');
         }}>
         <Image
-          source={require('../../assets/1.jpg')}
+          source={require('../../assets/user-dummy-img.jpg')}
           style={styles.profileImage}
         />
         <View style={styles.viewProfile}>

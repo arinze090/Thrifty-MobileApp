@@ -10,6 +10,7 @@ import {
   updateSellerOrders,
   updateUserOrders,
 } from '../../redux/features/user/userSlice';
+import NoOrderAnimation from '../../components/animations/NoOrderAnimation';
 
 const SellerOrdersScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -84,7 +85,7 @@ const SellerOrdersScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={styles.container}>
       <ScrollView
         refreshControl={
           <RefreshControl
@@ -94,17 +95,26 @@ const SellerOrdersScreen = ({navigation}) => {
             style={{zIndex: 999}}
           />
         }>
-        {reverseThriftyOrders?.map((cur, i) => {
-          return (
-            <OrdersCard
-              key={i}
-              props={cur}
-              onPress={() => {
-                navigation.navigate('OrderDetails', cur);
-              }}
-            />
-          );
-        })}
+        {reverseThriftyOrders?.length ? (
+          reverseThriftyOrders?.map((cur, i) => {
+            return (
+              <OrdersCard
+                key={i}
+                props={cur}
+                onPress={() => {
+                  navigation.navigate('OrderDetails', cur);
+                }}
+              />
+            );
+          })
+        ) : (
+          <View>
+            <Text style={styles.nothingToShow}>
+              You currently dont have orders
+            </Text>
+            <NoOrderAnimation />
+          </View>
+        )}
         <ScrollViewSpace />
       </ScrollView>
     </View>
@@ -113,4 +123,17 @@ const SellerOrdersScreen = ({navigation}) => {
 
 export default SellerOrdersScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  nothingToShow: {
+    textAlign: 'center',
+    color: 'black',
+    fontWeight: '700',
+    fontSize: 16,
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+});
