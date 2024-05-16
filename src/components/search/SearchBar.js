@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     // marginBottom: 10,
+    // backgroundColor: 'black',
+    height: 55,
   },
   searchBar__unclicked: {
     padding: 7,

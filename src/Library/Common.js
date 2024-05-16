@@ -92,3 +92,22 @@ export const RNToast = (Toast, text2) => {
     text2: text2,
   });
 };
+
+export function capitalizeFirstCharacter(string) {
+  if (typeof string !== 'string' || string.length === 0) {
+    return string;
+  }
+
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const convertDateToSubstring = timestamp => {
+  const date = new Date(timestamp);
+  const month = date.toLocaleString('en-US', {month: 'long'});
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  const formattedDate = `${month} ${day < 10 ? '0' + day : day}, ${year}`;
+
+  return formattedDate;
+};

@@ -37,6 +37,8 @@ import EditProfile from './Profile/EditProfile';
 import AdminDashboard from './Admin/AdminDashboard';
 import CreateBrandsScreen from './Admin/CreateBrandsScreen';
 import CreateItemTypeScreen from './Admin/CreateItemTypeScreen';
+import AddCategoryScreen from './Admin/AddCategoryScreen';
+import AddItemConditionScreen from './Admin/AddItemConditionScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -439,7 +441,7 @@ const ProfileStack = ({navigation}) => (
       options={{
         headerShown: true,
         headerBackTitleVisible: false,
-        headerTitle: '',
+        headerTitle: 'Account History',
         headerStyle: {
           backgroundColor: COLORS.appBackground,
         },
@@ -531,6 +533,32 @@ const AdminStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
+      name="AddCategoryScreen"
+      component={AddCategoryScreen}
+      options={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerTitle: 'Add Category',
+        headerStyle: {
+          backgroundColor: COLORS.appBackground,
+        },
+        headerTitleStyle: {
+          color: COLORS.appTextColor,
+        },
+        headerLeft: () => (
+          <View style={{marginLeft: 10}}>
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              // backgroundColor={COLORS.appTextColor}
+              color={COLORS.appTextColor}
+              onPress={() => navigation.navigate('AdminDashboard')}
+            />
+          </View>
+        ),
+      }}
+    />
+    <Stack.Screen
       name="CreateBrandsScreen"
       component={CreateBrandsScreen}
       options={{
@@ -582,6 +610,32 @@ const AdminStack = ({navigation}) => (
         ),
       }}
     />
+    <Stack.Screen
+      name="AddItemConditionScreen"
+      component={AddItemConditionScreen}
+      options={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerTitle: 'Add Item Condition',
+        headerStyle: {
+          backgroundColor: COLORS.appBackground,
+        },
+        headerTitleStyle: {
+          color: COLORS.appTextColor,
+        },
+        headerLeft: () => (
+          <View style={{marginLeft: 10}}>
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              // backgroundColor={COLORS.appTextColor}
+              color={COLORS.appTextColor}
+              onPress={() => navigation.navigate('AdminDashboard')}
+            />
+          </View>
+        ),
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -603,8 +657,8 @@ const MainScreen = () => {
             backgroundColor: COLORS.appBackground,
           };
         })(route),
-        tabBarActiveTintColor: COLORS.appTextColor,
-        tabBarColor: '#000',
+        tabBarActiveTintColor: COLORS.thriftyColor,
+        tabBarColor: COLORS.thriftyColor,
         tabBarInActiveBackgroundColor: '#000',
       })}>
       <Tab.Screen
@@ -613,7 +667,7 @@ const MainScreen = () => {
         options={({route}) => ({
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
-            <Ionicons name="home-outline" color={color} size={26} />
+            <Ionicons name="home" color={color} size={26} />
           ),
           headerShown: false,
         })}
@@ -624,7 +678,7 @@ const MainScreen = () => {
         options={({route}) => ({
           tabBarLabel: 'Search',
           tabBarIcon: ({color}) => (
-            <Ionicons name="search-outline" size={26} color={color} />
+            <Ionicons name="search" size={26} color={color} />
           ),
           headerShown: false,
         })}
@@ -636,7 +690,7 @@ const MainScreen = () => {
         options={({route}) => ({
           tabBarLabel: 'Sell',
           tabBarIcon: ({color}) => (
-            <Ionicons name="add-circle-outline" color={color} size={26} />
+            <Ionicons name="add-circle" color={color} size={26} />
           ),
           headerShown: false,
         })}
@@ -662,9 +716,9 @@ const MainScreen = () => {
           tabBarLabel: loggedInUser ? 'Profile' : 'Login',
           tabBarIcon: ({color}) =>
             loggedInUser ? (
-              <Ionicons name="person-outline" color={color} size={26} />
+              <Ionicons name="person" color={color} size={26} />
             ) : (
-              <Ionicons name="person-outline" color={color} size={26} />
+              <Ionicons name="person" color={color} size={26} />
             ),
           headerShown: false,
         })}

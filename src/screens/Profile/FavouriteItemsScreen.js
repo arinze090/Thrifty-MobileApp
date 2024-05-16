@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import ThriftyCard from '../../components/cards/ThriftyCard';
@@ -13,27 +13,29 @@ const FavouriteItemsScreen = ({navigation}) => {
   console.log('reduxLikedProducts', reduxLikedProducts);
   return (
     <View style={styles.container}>
-      {reduxLikedProducts && reduxLikedProducts?.length ? (
-        <View style={styles.thriftyItems}>
-          {reduxLikedProducts?.map((cur, i) => (
-            <View key={i}>
-              <ThriftyCard
-                props={cur}
-                //   onPress={() => {
-                //     navigation.navigate('DetailsScreen', cur);
-                //   }}
-              />
-            </View>
-          ))}
-        </View>
-      ) : (
-        <View>
-          <Text style={styles.nothingToShow}>
-            You currently don't have saved items
-          </Text>
-          <NoOrderAnimation />
-        </View>
-      )}
+      <ScrollView>
+        {reduxLikedProducts && reduxLikedProducts?.length ? (
+          <View style={styles.thriftyItems}>
+            {reduxLikedProducts?.map((cur, i) => (
+              <View key={i}>
+                <ThriftyCard
+                  props={cur}
+                  //   onPress={() => {
+                  //     navigation.navigate('DetailsScreen', cur);
+                  //   }}
+                />
+              </View>
+            ))}
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.nothingToShow}>
+              You currently don't have saved items
+            </Text>
+            <NoOrderAnimation />
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 };

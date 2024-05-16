@@ -55,28 +55,17 @@ const CategorySearchBar = props => {
           <Ionicons
             name="close-outline"
             size={20}
-            color="red"
+            color="black"
             style={{padding: 1}}
             onPress={() => {
               props?.setSearchPhrase('');
+              Keyboard.dismiss();
+              props?.setClicked(false);
             }}
           />
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
-      {props?.clicked && (
-        <View>
-          <FormButton
-            title="Cancel"
-            onPress={() => {
-              Keyboard.dismiss();
-              props?.setClicked(false);
-              props?.setSearchPhrase('');
-            }}
-            width={6}
-          />
-        </View>
-      )}
     </View>
   );
 };
@@ -93,6 +82,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     // marginBottom: 10,
+    // backgroundColor: 'black',
+    height: 60,
   },
   searchBar__unclicked: {
     padding: 7,
@@ -105,7 +96,7 @@ const styles = StyleSheet.create({
   searchBar__clicked: {
     padding: 10,
     flexDirection: 'row',
-    width: '80%',
+    width: '97%',
     backgroundColor: '#d9dbda',
     borderRadius: 15,
     alignItems: 'center',

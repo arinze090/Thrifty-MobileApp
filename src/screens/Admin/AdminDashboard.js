@@ -53,11 +53,11 @@ const revenues = [
 ];
 
 const adminDashboard = [
-  //   {
-  //     iconName: 'cart-outline',
-  //     name: 'Add Category',
-  //     navigate: 'CreateCategoryScreen',
-  //   },
+  {
+    iconName: 'cart-outline',
+    name: 'Add Category',
+    navigate: 'AddCategoryScreen',
+  },
   {
     iconName: 'barcode-outline',
     name: 'Add Brands',
@@ -67,6 +67,11 @@ const adminDashboard = [
     iconName: 'medical-outline',
     name: 'Add Item Type',
     navigate: 'CreateItemTypeScreen',
+  },
+  {
+    iconName: 'medical-outline',
+    name: 'Add Item Condition',
+    navigate: 'AddItemConditionScreen',
   },
 ];
 const AdminDashboard = ({navigation}) => {
@@ -310,27 +315,6 @@ const AdminDashboard = ({navigation}) => {
           ))}
         </ScrollView>
         <View>
-          <TouchableOpacity
-            style={styles.set}
-            onPress={() => {
-              console.log('dhdhd');
-              categoryBottomSheetRef.current.open();
-            }}>
-            <View style={styles.setsContent}>
-              <Ionicons
-                name="cart-outline"
-                size={20}
-                color={COLORS.appTextColor}
-              />
-              <Text style={styles.settingsText}>Add Category</Text>
-            </View>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={20}
-              color={COLORS.appTextColor}
-              style={{marginTop: 5}}
-            />
-          </TouchableOpacity>
           {adminDashboard?.map((cur, i) => (
             <TouchableOpacity
               key={i}
@@ -352,27 +336,6 @@ const AdminDashboard = ({navigation}) => {
               />
             </TouchableOpacity>
           ))}
-          <TouchableOpacity
-            style={styles.set}
-            onPress={() => {
-              console.log('dhdhd');
-              itemconditionBottomSheetRef.current.open();
-            }}>
-            <View style={styles.setsContent}>
-              <Ionicons
-                name="medical-outline"
-                size={20}
-                color={COLORS.appTextColor}
-              />
-              <Text style={styles.settingsText}>Add Item Condition</Text>
-            </View>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={20}
-              color={COLORS.appTextColor}
-              style={{marginTop: 5}}
-            />
-          </TouchableOpacity>
         </View>
 
         {/* Category Bottomsheet */}

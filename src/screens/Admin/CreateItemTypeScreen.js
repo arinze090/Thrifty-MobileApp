@@ -22,6 +22,7 @@ import ScrollViewSpace from '../../components/common/ScrollViewSpace';
 import FormButton from '../../components/form/FormButton';
 import {CREATE_ITEM_TYPE} from '../../utils/graphql/gql-queries';
 import verifyToken from '../../components/hoc/verifyUserToken';
+import ThriftyPins from '../../components/common/ThriftyPins';
 
 const CreateItemTypeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ const CreateItemTypeScreen = ({navigation}) => {
   console.log('statttt', state);
 
   const reduxCategories = state.category.categories;
-
+  const reduxItemTypes = state?.category?.itemTypes;
+  console.log('reduxItemTypes', reduxItemTypes);
   console.log('reduxCategories', reduxCategories);
 
   const categoryPlaceholder = {
@@ -122,8 +124,6 @@ const CreateItemTypeScreen = ({navigation}) => {
   return (
     <SafeAreaViewComponent>
       <ScrollView>
-        {/* Authentications */}
-
         <View style={styles.auth}>
           <Text style={styles.inputTitle}>Name *</Text>
           <FormInput

@@ -34,6 +34,9 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+
   // We will load fresh data on this screen
   const [fetchData, {loading: categoryLoading}] = useLazyQuery(GET_CATEGORIES, {
     fetchPolicy: 'network-only',
@@ -114,8 +117,6 @@ const AppNavigation = () => {
 
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
 
-  const dispatch = useDispatch();
-  const state = useSelector(state => state);
   const userToken = state?.user?.userToken;
   console.log('userToken', userToken);
   const [loading, setLoading] = useState(false);

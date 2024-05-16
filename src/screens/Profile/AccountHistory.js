@@ -28,13 +28,17 @@ import {
   setTnxHistory,
   setUserBalances,
 } from '../../redux/features/user/userSlice';
+import TnxCard from '../../components/cards/TnxCard';
 
-const AccountHistory = () => {
-  const userId = useSelector(state => state?.user?.user?.user?.id);
-  const tnxHistory = useSelector(state => state?.user?.tnxHistory);
-  const userBalances = useSelector(state => state?.user?.userBalances);
-
+const AccountHistory = ({navigation}) => {
   const dispatch = useDispatch();
+
+  const user = useSelector(state => state?.user?.user?.user?.wallet);
+  const tnxHistory = useSelector(state => state?.user?.tnxHistory);
+  const userBalances = useSelector(state => state?.user?.user?.user?.wallet);
+
+  console.log('userWallet', user);
+
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   console.log('loadinggg', loading);
@@ -54,7 +58,7 @@ const AccountHistory = () => {
       //   variables: {userId: userId},
 
       onCompleted: async data => {
-        if (data?.getUserBalance?.code === 200) {
+        if (data?.getUserBalance?.success) {
           //   dispatch(setUserBalances(data?.getUserBalance));
           console.log('getUserBalance', data?.getUserBalance);
           setLoading(false);
@@ -86,10 +90,10 @@ const AccountHistory = () => {
 
     fetchAccountHistory({
       onCompleted: async data => {
-        if (data?.getUserTnxHistory?.code === 200) {
-          //   dispatch(setTnxHistory(data?.getUserTnxHistory?.transactionHistory));
+        if (data?.getTnxHistory?.success) {
+          dispatch(setTnxHistory(data?.getTnxHistory?.history));
           setRefreshing(false);
-          console.log('dataaaa ::', data?.getUserTnxHistory);
+          console.log('dataaaa ::', data?.getTnxHistory?.history);
 
           // Toast a message to the user if the code == 200 or successful
           Toast.show({
@@ -122,12 +126,122 @@ const AccountHistory = () => {
   }, []);
 
   return (
-    <View>
-      <Text>AccountHistory</Text>
+    <View style={styles.container}>
+      <View style={styles.accountContainer}>
+        <Text style={styles.accountTitle}>Available Balance</Text>
+        <Text style={styles.accountValue}>
+          {fetchUserBalanceLoader ? (
+            <ActivityIndicator color="white" />
+          ) : (
+            setPriceTo2DecimalPlaces(userBalances?.available_balance)
+          )}
+        </Text>
+        <View style={styles.pendingContainer}>
+          <Text style={[styles.accountTitle, {marginRight: 10}]}>
+            Pending Balance:
+          </Text>
+          <Text style={[styles.accountValue, {fontSize: 20}]}>
+            {fetchUserBalanceLoader ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              setPriceTo2DecimalPlaces(userBalances?.pending_balance)
+            )}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.transactionContainer}>
+        <View style={{flexDirection: 'row', marginBottom: 20}}>
+          <Text
+            style={[
+              styles.accountTitle,
+              {color: 'black', marginRight: 10, fontSize: 16},
+            ]}>
+            Transaction History
+          </Text>
+          <Ionicons name="repeat-outline" size={20} color="#000" />
+        </View>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor={COLORS.white}
+              style={{zIndex: 999}}
+            />
+          }>
+          {tnxHistory?.map((cur, i) => {
+            return (
+              <TnxCard
+                key={i}
+                props={cur}
+                onPress={() => {
+                  // dispatch(setTnxHistoryDetails(cur));
+                  // navigation.navigate('TransactionHistoryDetails', cur);
+                }}
+              />
+            );
+          })}
+          <View style={[styles.section, {marginTop: 150, minHeight: 200}]} />
+        </ScrollView>
+      </View>
     </View>
   );
 };
 
 export default AccountHistory;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.appBackground,
+    flex: 1,
+  },
+  accountContainer: {
+    // backgroundColor: '#C6D0BC',
+    // backgroundColor: '#A9AEFF',
+    backgroundColor: '#000',
+    margin: 10,
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  pendingContainer: {
+    // flexDirection: 'row',
+    marginTop: 20,
+    // alignContent: 'center',
+    // alignItems: 'center',
+  },
+  accountTitle: {
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  accountValue: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: '700',
+  },
+  transactionContainer: {
+    backgroundColor: COLORS.appBackground,
+    height: windowHeight,
+    width: windowWidth,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    padding: 20,
+    marginBottom: 10,
+  },
+  transactionCard: {
+    height: windowHeight / 11,
+    width: windowWidth / 1.12,
+    // backgroundColor: '#ccc',
+    padding: 20,
+    borderRadius: 10,
+    marginTop: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: 'red',
+    borderBottomWidth: 1,
+  },
+});

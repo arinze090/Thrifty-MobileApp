@@ -32,9 +32,15 @@ import {
   setUploadProgress,
 } from '../../redux/features/user/userSlice';
 import {RNToast} from '../../Library/Common';
+import ThriftyPins from '../../components/common/ThriftyPins';
+import dummy from '../../data/dummyData';
 
 const CreateBrandsScreen = ({navigation}) => {
   const dispatch = useDispatch();
+
+  const state = useSelector(state => state);
+  const reduxBrands = state?.category?.brands;
+  console.log('reduxBrands', reduxBrands);
 
   const [brandName, setBrandName] = useState('');
   const [description, setDescription] = useState('');
@@ -138,6 +144,17 @@ const CreateBrandsScreen = ({navigation}) => {
   };
   return (
     <SafeAreaViewComponent>
+      <View style={{margin: 20}}>
+        <Text style={styles.brandsOnThrifty}>Brands on Thrifty</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.customSwitch}>
+          {reduxBrands?.map((cur, i) => (
+            <ThriftyPins key={i} optionTitle={cur?.name} />
+          ))}
+        </ScrollView>
+      </View>
       <ScrollView>
         {/* Authentications */}
         <View style={styles.coverArtContainer}>
@@ -333,5 +350,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     // textAlign: 'center',
     // width: '90%',
+  },
+  brandsOnThrifty: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 10,
   },
 });
