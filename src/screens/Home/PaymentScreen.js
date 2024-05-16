@@ -37,7 +37,7 @@ import HeaderTitle from '../../components/common/HeaderTitle';
 import FormButton from '../../components/form/FormButton';
 import BottomSheet from '../../components/bottomSheet/BottomSheet';
 import FormInput from '../../components/form/FormInput';
-import {setUserDeliveryAddress} from '../../redux/features/user/userSlice';
+import {setUserDeliveryAddress, updateThrifty} from '../../redux/features/user/userSlice';
 import ScrollViewSpace from '../../components/common/ScrollViewSpace';
 import verifyToken from '../../components/hoc/verifyToken';
 
@@ -137,17 +137,6 @@ const PaymentScreen = ({navigation, route}) => {
     is_paid = 0,
   ) => {
     const data = {
-      //   thrifty postPay action
-      // price_breakdown: {
-      //   delivery_fee: 2500,
-      //   total_items_price: paymentAmount,
-      // },
-      // items: {
-      //   applied_discount: '',
-      //   item: item?.id,
-      //   qty: 1,
-      // },
-
       delivery_details: {
         additional_phone_number: reduxDeliveryAddress?.deliveryPhoneNumber,
         apt_or_suite_number: '',
@@ -176,6 +165,9 @@ const PaymentScreen = ({navigation, route}) => {
           console.log('api success', data);
 
           if (data?.createSingleOrder?.success) {
+            if (data?.createSingleOrder?.order) {
+              dispatch(updateThrifty(data?.createSingleOrder?.order));
+            }
             // Alert the user that the transaction was successful
             Alert.alert(
               'Order Placed!',
@@ -372,6 +364,23 @@ const PaymentScreen = ({navigation, route}) => {
     );
   };
 
+  const startPayStackPayment = () => {
+    console.log('clicked');
+    if (
+      !reduxDeliveryAddress?.address ||
+      !reduxDeliveryAddress?.deliveryPhoneNumber ||
+      !reduxDeliveryAddress?.city ||
+      !reduxDeliveryAddress?.deliveryState
+    ) {
+      Alert.alert(
+        'Please provide your full delivery details before initiating payment',
+      );
+      RNToast(Toast, 'Please provide your delivery details');
+    } else {
+      paystackWebViewRef.current.startTransaction();
+    }
+  };
+
   return (
     <SafeAreaViewComponent>
       <ScrollView contentContainerStyle={{padding: 20}}>
@@ -395,7 +404,9 @@ const PaymentScreen = ({navigation, route}) => {
             marginBottom: 10,
           }}>
           <Text style={styles.priceBreakdown}>Order</Text>
-          <Text>{setPriceTo2DecimalPlaces(paymentAmount)}</Text>
+          <Text style={{color: 'black'}}>
+            {setPriceTo2DecimalPlaces(paymentAmount)}
+          </Text>
         </View>
         <View
           style={{
@@ -404,7 +415,9 @@ const PaymentScreen = ({navigation, route}) => {
             marginBottom: 10,
           }}>
           <Text style={styles.priceBreakdown}>Buyer Protection Fee</Text>
-          <Text>{setPriceTo2DecimalPlaces(platformFee)}</Text>
+          <Text style={{color: 'black'}}>
+            {setPriceTo2DecimalPlaces(platformFee)}
+          </Text>
         </View>
         <View
           style={{
@@ -415,7 +428,9 @@ const PaymentScreen = ({navigation, route}) => {
           <Text style={[styles.priceBreakdown, {color: 'black'}]}>
             Total To Pay
           </Text>
-          <Text>{setPriceTo2DecimalPlaces(overallFee)}</Text>
+          <Text style={{color: 'black'}}>
+            {setPriceTo2DecimalPlaces(overallFee)}
+          </Text>
         </View>
 
         <View style={styles.breaker} />
@@ -434,26 +449,29 @@ const PaymentScreen = ({navigation, route}) => {
               alignContent: 'center',
               alignItems: 'center',
             }}>
-            <Text>Address</Text>
+            <Text style={{color: 'black'}}>Address</Text>
             <Ionicons
               name={reduxDeliveryAddress ? 'pencil-outline' : 'add-outline'}
               size={20}
               color={COLORS.appTextColor}
               onPress={() => {
-                refRBSheet.current.open();
+                // refRBSheet.current.open();
+                navigation.navigate('AddressFormScreen');
               }}
             />
           </View>
           {reduxDeliveryAddress && (
             <View style={{marginTop: 10, marginBottom: 20}}>
-              <Text>{reduxDeliveryAddress?.name}</Text>
-              <Text>
+              <Text style={{color: 'black'}}>{reduxDeliveryAddress?.name}</Text>
+              <Text style={{color: 'black'}}>
                 {reduxDeliveryAddress?.address}, {reduxDeliveryAddress?.city}{' '}
                 {'\n'}
                 {reduxDeliveryAddress?.deliveryState}
               </Text>
 
-              <Text>{reduxDeliveryAddress?.deliveryPhoneNumber}</Text>
+              <Text style={{color: 'black'}}>
+                {reduxDeliveryAddress?.deliveryPhoneNumber}
+              </Text>
             </View>
           )}
         </View>
@@ -514,9 +532,9 @@ const PaymentScreen = ({navigation, route}) => {
 
         <View style={{marginTop: 20}}>
           <FormButton
-            disabled={loading}
-            title={'Pay Now'}
-            onPress={() => paystackWebViewRef.current.startTransaction()}
+            disabled={loading || buyItemsMutationLoading}
+            title={buyItemsMutationLoading ? 'Loading ...' : 'Pay Now'}
+            onPress={startPayStackPayment}
           />
         </View>
 

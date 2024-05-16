@@ -39,6 +39,7 @@ import CreateBrandsScreen from './Admin/CreateBrandsScreen';
 import CreateItemTypeScreen from './Admin/CreateItemTypeScreen';
 import AddCategoryScreen from './Admin/AddCategoryScreen';
 import AddItemConditionScreen from './Admin/AddItemConditionScreen';
+import AddressFormScreen from './Home/AddressFormScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -188,6 +189,32 @@ const HomeStack = ({navigation}) => (
         headerShown: true,
         headerBackTitleVisible: false,
         headerTitle: '',
+        headerStyle: {
+          backgroundColor: COLORS.appBackground,
+        },
+        headerTitleStyle: {
+          color: COLORS.appTextColor,
+        },
+        headerLeft: () => (
+          <View style={{marginLeft: 10}}>
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              // backgroundColor={COLORS.appTextColor}
+              color={COLORS.appTextColor}
+              onPress={() => navigation.goBack()}
+            />
+          </View>
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="AddressFormScreen"
+      component={AddressFormScreen}
+      options={{
+        headerShown: true,
+        headerBackTitleVisible: false,
+        headerTitle: 'Delivery Address',
         headerStyle: {
           backgroundColor: COLORS.appBackground,
         },
