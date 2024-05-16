@@ -30,8 +30,8 @@ const authLink = setContext((_, {headers}) => {
 
 // const apiBase = 'https://graph.shoutti.com/graphql';
 // const apiBase = 'http://localhost:4040/graphql';
-const apiBase = 'http://172.20.10.4:4040/graphql';
-// const apiBase = 'https://thrifty-dev.onrender.com/graphql';
+// const apiBase = 'http://172.20.10.4:4040/graphql';
+const apiBase = 'https://thrifty-dev.onrender.com/graphql';
 
 const httpLink = createHttpLink({uri: apiBase});
 
