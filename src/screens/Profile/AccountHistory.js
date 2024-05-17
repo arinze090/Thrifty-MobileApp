@@ -29,6 +29,7 @@ import {
   setUserBalances,
 } from '../../redux/features/user/userSlice';
 import TnxCard from '../../components/cards/TnxCard';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const AccountHistory = ({navigation}) => {
   const dispatch = useDispatch();
@@ -127,6 +128,17 @@ const AccountHistory = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Account History'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={styles.accountContainer}>
         <Text style={styles.accountTitle}>Available Balance</Text>
         <Text style={styles.accountValue}>

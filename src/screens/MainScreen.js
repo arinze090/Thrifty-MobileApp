@@ -186,7 +186,7 @@ const HomeStack = ({navigation}) => (
       name="PaymentScreen"
       component={PaymentScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: '',
         headerStyle: {
@@ -195,24 +195,13 @@ const HomeStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.goBack()}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="AddressFormScreen"
       component={AddressFormScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Delivery Address',
         headerStyle: {
@@ -221,24 +210,13 @@ const HomeStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.goBack()}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="HomeOrders"
       component={OrdersScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'My Orders',
         headerStyle: {
@@ -247,24 +225,13 @@ const HomeStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('HomeScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="OrderDetails"
       component={OrderDetailsScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: '',
         headerStyle: {
@@ -273,17 +240,6 @@ const HomeStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('HomeOrders')}
-            />
-          </View>
-        ),
       }}
     />
   </Stack.Navigator>
@@ -310,7 +266,7 @@ const ProfileStack = ({navigation}) => (
       name="EditProfile"
       component={EditProfile}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Profile',
         headerStyle: {
@@ -319,24 +275,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="About"
       component={AboutScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'About',
         headerStyle: {
@@ -345,24 +290,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="Favourites"
       component={FavouriteItemsScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Favourite Items',
         headerStyle: {
@@ -371,24 +305,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="OrderScreen"
       component={OrdersScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'My Orders',
         headerStyle: {
@@ -397,24 +320,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="SellerOrdersScreen"
       component={SellerOrdersScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'My Shop Orders',
         headerStyle: {
@@ -423,24 +335,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="OrderDetails"
       component={OrderDetailsScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: '',
         headerStyle: {
@@ -449,24 +350,13 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('OrderScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="AccountHistory"
       component={AccountHistory}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Account History',
         headerStyle: {
@@ -475,17 +365,6 @@ const ProfileStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
@@ -512,7 +391,7 @@ const SellerStack = ({navigation}) => (
       name="AddItem"
       component={AddItem}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Add Product',
         headerStyle: {
@@ -528,7 +407,7 @@ const SellerStack = ({navigation}) => (
       name="About"
       component={AboutScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'About',
         headerStyle: {
@@ -548,7 +427,7 @@ const AdminStack = ({navigation}) => (
       name="AdminDashboard"
       component={AdminDashboard}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Dashboard',
         headerStyle: {
@@ -563,7 +442,7 @@ const AdminStack = ({navigation}) => (
       name="AddCategoryScreen"
       component={AddCategoryScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Add Category',
         headerStyle: {
@@ -572,24 +451,13 @@ const AdminStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('AdminDashboard')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="CreateBrandsScreen"
       component={CreateBrandsScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Add Brand',
         headerStyle: {
@@ -598,24 +466,13 @@ const AdminStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('AdminDashboard')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="CreateItemTypeScreen"
       component={CreateItemTypeScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Add Item Type',
         headerStyle: {
@@ -624,24 +481,13 @@ const AdminStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('AdminDashboard')}
-            />
-          </View>
-        ),
       }}
     />
     <Stack.Screen
       name="AddItemConditionScreen"
       component={AddItemConditionScreen}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerTitle: 'Add Item Condition',
         headerStyle: {
@@ -650,17 +496,6 @@ const AdminStack = ({navigation}) => (
         headerTitleStyle: {
           color: COLORS.appTextColor,
         },
-        headerLeft: () => (
-          <View style={{marginLeft: 10}}>
-            <Ionicons
-              name="arrow-back-outline"
-              size={25}
-              // backgroundColor={COLORS.appTextColor}
-              color={COLORS.appTextColor}
-              onPress={() => navigation.navigate('AdminDashboard')}
-            />
-          </View>
-        ),
       }}
     />
   </Stack.Navigator>

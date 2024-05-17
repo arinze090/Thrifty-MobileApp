@@ -23,6 +23,7 @@ import {CREATE_CATEGORY} from '../../utils/graphql/gql-queries';
 
 import {RNToast} from '../../Library/Common';
 import ThriftyPins from '../../components/common/ThriftyPins';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const AddCategoryScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -91,6 +92,17 @@ const AddCategoryScreen = ({navigation}) => {
 
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Add Category'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={{margin: 20}}>
         <Text style={styles.brandsOnThrifty}>
           Previous Categories on Thrifty

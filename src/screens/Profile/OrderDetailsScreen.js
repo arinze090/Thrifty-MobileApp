@@ -28,6 +28,7 @@ import {
 import FormButton from '../../components/form/FormButton';
 import {UPDATE_TRACKING_PROGRESS} from '../../utils/graphql/gql-queries';
 import {useMutation} from '@apollo/client';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const stepIndicatorStyles = {
   stepIndicatorSize: 30,
@@ -164,6 +165,17 @@ const OrderDetailsScreen = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Order Details'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView style={styles.container}>
         {item?.items?.map((cur, i) => (
           <OrderDetailsCard props={cur} />

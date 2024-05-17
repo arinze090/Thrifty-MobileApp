@@ -8,6 +8,7 @@ import ScrollViewSpace from '../../components/common/ScrollViewSpace';
 import {COLORS} from '../../theme/themes';
 import {updateUserOrders} from '../../redux/features/user/userSlice';
 import NoOrderAnimation from '../../components/animations/NoOrderAnimation';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const OrdersScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -83,6 +84,17 @@ const OrdersScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Orders'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView
         refreshControl={
           <RefreshControl

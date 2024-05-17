@@ -11,6 +11,7 @@ import {windowHeight, windowWidth} from '../../utils/Dimensions';
 import {COLORS} from '../../theme/themes';
 import {setUserDeliveryAddress} from '../../redux/features/user/userSlice';
 import {phoneValidator} from '../../Library/Validation';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const AddressFormScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -93,6 +94,17 @@ const AddressFormScreen = ({navigation}) => {
 
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Add Delivery Address'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView>
         <View style={styles.auth}>
           <Text style={styles.inputTitle}>Full Name</Text>

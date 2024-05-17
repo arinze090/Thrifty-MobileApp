@@ -11,6 +11,7 @@ import {
   updateUserOrders,
 } from '../../redux/features/user/userSlice';
 import NoOrderAnimation from '../../components/animations/NoOrderAnimation';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const SellerOrdersScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -86,6 +87,17 @@ const SellerOrdersScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Orders'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView
         refreshControl={
           <RefreshControl

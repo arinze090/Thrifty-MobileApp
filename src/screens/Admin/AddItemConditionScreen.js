@@ -24,8 +24,9 @@ import verifyToken from '../../components/hoc/verifyUserToken';
 
 import {RNToast} from '../../Library/Common';
 import ThriftyPins from '../../components/common/ThriftyPins';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
-const AddItemConditionScreen = () => {
+const AddItemConditionScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const state = useSelector(state => state);
@@ -93,6 +94,17 @@ const AddItemConditionScreen = () => {
   };
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Add Item Condition'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={{margin: 20}}>
         <Text style={styles.brandsOnThrifty}>
           Previous Item Conditions on Thrifty

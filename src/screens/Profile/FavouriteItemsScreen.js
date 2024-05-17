@@ -5,6 +5,7 @@ import ThriftyCard from '../../components/cards/ThriftyCard';
 import {COLORS} from '../../theme/themes';
 import {windowWidth} from '../../utils/Dimensions';
 import NoOrderAnimation from '../../components/animations/NoOrderAnimation';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const FavouriteItemsScreen = ({navigation}) => {
   const state = useSelector(state => state);
@@ -13,6 +14,17 @@ const FavouriteItemsScreen = ({navigation}) => {
   console.log('reduxLikedProducts', reduxLikedProducts);
   return (
     <View style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Favourites'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView>
         {reduxLikedProducts && reduxLikedProducts?.length ? (
           <View style={styles.thriftyItems}>

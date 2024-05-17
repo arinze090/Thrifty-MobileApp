@@ -37,13 +37,13 @@ export default function verifyToken(WrappedComponent) {
             navigation.navigate('Login');
           }
         } catch (error) {
-          dispatch(signOut());
+          dispatch(signOutUser());
           Alert.alert('Session Expired', 'Please login to continue');
           navigation.navigate('Login');
         }
       } else {
         console.log('session error', error);
-        dispatch(signOut());
+        dispatch(signOutUser());
         Alert.alert('Session Expired', 'Please login to continue');
         navigation.navigate('Login');
       }

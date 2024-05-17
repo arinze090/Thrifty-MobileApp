@@ -7,8 +7,9 @@ import FormInput from '../../components/form/FormInput';
 import {COLORS} from '../../theme/themes';
 import {windowHeight} from '../../utils/Dimensions';
 import FormButton from '../../components/form/FormButton';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
-const EditProfile = () => {
+const EditProfile = ({navigation}) => {
   const dispatch = useDispatch();
 
   const state = useSelector(state => state);
@@ -22,6 +23,17 @@ const EditProfile = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={''}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={{marginTop: 20}}>
         <View style={styles.userContent}>
           <View style={styles.profile}>

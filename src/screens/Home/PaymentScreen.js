@@ -383,6 +383,17 @@ const PaymentScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={''}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView contentContainerStyle={{padding: 20}}>
         <View
           style={{

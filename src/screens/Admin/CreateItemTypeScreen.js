@@ -23,6 +23,7 @@ import FormButton from '../../components/form/FormButton';
 import {CREATE_ITEM_TYPE} from '../../utils/graphql/gql-queries';
 import verifyToken from '../../components/hoc/verifyUserToken';
 import ThriftyPins from '../../components/common/ThriftyPins';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const CreateItemTypeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -123,6 +124,17 @@ const CreateItemTypeScreen = ({navigation}) => {
 
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Add Item Type'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <ScrollView>
         <View style={styles.auth}>
           <Text style={styles.inputTitle}>Name *</Text>

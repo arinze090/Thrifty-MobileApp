@@ -34,6 +34,7 @@ import {
 import {RNToast} from '../../Library/Common';
 import ThriftyPins from '../../components/common/ThriftyPins';
 import dummy from '../../data/dummyData';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const CreateBrandsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -144,6 +145,17 @@ const CreateBrandsScreen = ({navigation}) => {
   };
   return (
     <SafeAreaViewComponent>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation.goBack();
+        }}
+        headerTitle={'Add Brands'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={{margin: 20}}>
         <Text style={styles.brandsOnThrifty}>Brands on Thrifty</Text>
         <ScrollView
