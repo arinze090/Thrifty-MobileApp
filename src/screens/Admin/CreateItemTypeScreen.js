@@ -107,7 +107,7 @@ const CreateItemTypeScreen = ({navigation}) => {
               });
 
               setName('');
-              navigation.goBack();
+              navigation?.goBack();
             }
           },
           onError: error => {
@@ -127,7 +127,7 @@ const CreateItemTypeScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Add Item Type'}
         rightIcon={'menu-outline'}

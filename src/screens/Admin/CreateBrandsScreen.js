@@ -129,7 +129,7 @@ const CreateBrandsScreen = ({navigation}) => {
               setUploadedImageData(null);
               setBrandName('');
               setDescription('');
-              navigation.goBack();
+              navigation?.goBack();
             }
           },
           onError: error => {
@@ -148,7 +148,7 @@ const CreateBrandsScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Add Brands'}
         rightIcon={'menu-outline'}

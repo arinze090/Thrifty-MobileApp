@@ -427,7 +427,7 @@ const AdminStack = ({navigation}) => (
       name="AdminDashboard"
       component={AdminDashboard}
       options={{
-        headerShown: false,
+        headerShown: true,
         headerBackTitleVisible: false,
         headerTitle: 'Dashboard',
         headerStyle: {

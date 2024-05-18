@@ -88,7 +88,7 @@ const AddressFormScreen = ({navigation}) => {
       setAddressError('Please provide your address');
     } else {
       dispatch(setUserDeliveryAddress(saveReduxAddress));
-      navigation.goBack();
+      navigation?.goBack();
     }
   };
 
@@ -97,7 +97,7 @@ const AddressFormScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Add Delivery Address'}
         rightIcon={'menu-outline'}

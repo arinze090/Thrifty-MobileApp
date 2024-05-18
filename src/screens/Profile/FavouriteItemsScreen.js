@@ -17,7 +17,7 @@ const FavouriteItemsScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Favourites'}
         rightIcon={'menu-outline'}

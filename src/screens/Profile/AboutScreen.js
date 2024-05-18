@@ -13,6 +13,7 @@ import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
 import {COLORS} from '../../theme/themes';
+import HeaderTitle from '../../components/common/HeaderTitle';
 
 const about = [
   {
@@ -53,6 +54,17 @@ const AboutScreen = ({navigation}) => {
   };
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+      <HeaderTitle
+        leftIcon={'arrow-back-outline'}
+        onLeftIconPress={() => {
+          navigation?.goBack();
+        }}
+        headerTitle={'About Thrifty'}
+        rightIcon={'menu-outline'}
+        onRightIconPress={() => {
+          navigation.openDrawer();
+        }}
+      />
       <View style={styles.settings}>
         {about?.map((cur, i) => (
           <TouchableOpacity

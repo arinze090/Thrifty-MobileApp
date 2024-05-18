@@ -87,7 +87,7 @@ const OrdersScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Orders'}
         rightIcon={'menu-outline'}

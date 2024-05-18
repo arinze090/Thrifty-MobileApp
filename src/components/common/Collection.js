@@ -6,6 +6,7 @@ import {windowWidth} from '../../utils/Dimensions';
 import {COLORS} from '../../theme/themes';
 import {useNavigation} from '@react-navigation/native';
 import {setThriftyItems} from '../../redux/features/category/categorySlice';
+import DataFetchingAnimation from '../animations/DataFetchingAnimation';
 
 const Collection = () => {
   const navigation = useNavigation();
@@ -72,7 +73,7 @@ const Collection = () => {
                 <ThriftyCard
                   props={cur}
                   onPress={() => {
-                    navigation.navigate('DetailsScreen', cur);
+                    navigation?.navigate('DetailsScreen', cur);
                   }}
                 />
               </View>
@@ -80,7 +81,10 @@ const Collection = () => {
         </View>
       ) : (
         <View>
-          <Text>Please wait while we fetch our products</Text>
+          <Text style={styles.nothingToShow}>
+            Please wait while we aggregate your feeds
+          </Text>
+          <DataFetchingAnimation />
         </View>
       )}
     </View>

@@ -37,7 +37,10 @@ import HeaderTitle from '../../components/common/HeaderTitle';
 import FormButton from '../../components/form/FormButton';
 import BottomSheet from '../../components/bottomSheet/BottomSheet';
 import FormInput from '../../components/form/FormInput';
-import {setUserDeliveryAddress, updateThrifty} from '../../redux/features/user/userSlice';
+import {
+  setUserDeliveryAddress,
+  updateThrifty,
+} from '../../redux/features/user/userSlice';
 import ScrollViewSpace from '../../components/common/ScrollViewSpace';
 import verifyToken from '../../components/hoc/verifyToken';
 
@@ -386,7 +389,7 @@ const PaymentScreen = ({navigation, route}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={''}
         rightIcon={'menu-outline'}

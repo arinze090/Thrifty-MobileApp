@@ -131,7 +131,7 @@ const OrderDetailsScreen = ({route, navigation}) => {
           console.log('updateTracking mutation', data);
 
           if (data?.updateTrackingProgress?.success === true) {
-            navigation.goBack();
+            navigation?.goBack();
             // Toast a message to the user if the code == 200 or successful
             RNToast(
               Toast,
@@ -168,7 +168,7 @@ const OrderDetailsScreen = ({route, navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Order Details'}
         rightIcon={'menu-outline'}

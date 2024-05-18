@@ -131,7 +131,7 @@ const AccountHistory = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Account History'}
         rightIcon={'menu-outline'}

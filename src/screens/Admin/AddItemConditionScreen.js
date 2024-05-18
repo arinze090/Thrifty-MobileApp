@@ -97,7 +97,7 @@ const AddItemConditionScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Add Item Condition'}
         rightIcon={'menu-outline'}

@@ -75,7 +75,7 @@ const AddCategoryScreen = ({navigation}) => {
                 type: 'thriftyToast',
                 text2: 'Great! Your category has been added to Thrifty',
               });
-              navigation.goBack();
+              navigation?.goBack();
             }
           },
           onError: error => {
@@ -95,7 +95,7 @@ const AddCategoryScreen = ({navigation}) => {
       <HeaderTitle
         leftIcon={'arrow-back-outline'}
         onLeftIconPress={() => {
-          navigation.goBack();
+          navigation?.goBack();
         }}
         headerTitle={'Add Category'}
         rightIcon={'menu-outline'}

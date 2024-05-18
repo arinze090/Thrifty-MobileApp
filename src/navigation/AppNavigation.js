@@ -171,6 +171,13 @@ const AppNavigation = () => {
         }}
         headerMode="none">
         <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="Home"
           component={MainScreen}
           options={{
@@ -196,6 +203,13 @@ const AppNavigation = () => {
           drawerInactiveTintColor: COLORS.btnBorderColor,
         }}
         headerMode="none">
+        <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={MainScreen}
