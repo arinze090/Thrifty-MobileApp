@@ -58,7 +58,6 @@ const OnboardingScreen = ({navigation}) => {
         <View style={{alignItems: 'center', marginBottom: 0}}>
           <Image style={styles.introImageStyle} source={item.image} />
           <Text style={styles.introTitleStyle}>{item.title}</Text>
-          <Text style={styles.introTextStyle}>{item.description}</Text>
         </View>
       </View>
     );
@@ -84,7 +83,7 @@ const OnboardingScreen = ({navigation}) => {
     return (
       <TouchableOpacity
         style={styles.onboarderBtn}
-        onPress={() => navigation.navigate('HomeScreen')}>
+        onPress={() => navigation.navigate('Home')}>
         <Ionicons name="checkmark-outline" color="white" size={24} />
       </TouchableOpacity>
     );

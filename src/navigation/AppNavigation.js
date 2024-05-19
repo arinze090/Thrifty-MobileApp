@@ -29,6 +29,7 @@ import {
   getCategories,
   getItemConditions,
 } from '../redux/features/category/categorySlice';
+import SplashScreen from '../screens/SplashScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -120,6 +121,17 @@ const AppNavigation = () => {
   const userToken = state?.user?.userToken;
   console.log('userToken', userToken);
   const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Set isLoading to false after 3 seconds
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    // Cleanup the timeout to avoid potential memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array means this effect runs once after the initial render
 
   // To show the onboarding screen on just first launch
   useEffect(() => {
@@ -189,6 +201,8 @@ const AppNavigation = () => {
         />
       </Drawer.Navigator>
     );
+  } else if (isLoading) {
+    return <SplashScreen />;
   } else if (isFirstLaunch === false) {
     return (
       <Drawer.Navigator
@@ -203,13 +217,6 @@ const AppNavigation = () => {
           drawerInactiveTintColor: COLORS.btnBorderColor,
         }}
         headerMode="none">
-        <Stack.Screen
-          name="Onboarding"
-          component={OnboardingScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
         <Stack.Screen
           name="Home"
           component={MainScreen}
