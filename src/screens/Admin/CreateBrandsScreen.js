@@ -152,9 +152,6 @@ const CreateBrandsScreen = ({navigation}) => {
         }}
         headerTitle={'Add Brands'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <View style={{margin: 20}}>
         <Text style={styles.brandsOnThrifty}>Brands on Thrifty</Text>

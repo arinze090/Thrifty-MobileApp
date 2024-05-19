@@ -21,9 +21,6 @@ const FavouriteItemsScreen = ({navigation}) => {
         }}
         headerTitle={'Favourites'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView>
         {reduxLikedProducts && reduxLikedProducts?.length ? (

@@ -391,7 +391,7 @@ const SellerStack = ({navigation}) => (
       name="AddItem"
       component={AddItem}
       options={{
-        headerShown: false,
+        headerShown: true,
         headerBackTitleVisible: false,
         headerTitle: 'Add Product',
         headerStyle: {
@@ -558,16 +558,13 @@ const MainScreen = () => {
         })}
       />
       <Tab.Screen
-        name={loggedInUser ? 'Dashboard' : 'Chat'}
-        component={loggedInUser ? AdminStack : ChatScreen}
+        name={'Chat'}
+        component={ChatScreen}
         options={({route}) => ({
-          tabBarLabel: loggedInUser ? 'Dashboard' : 'Chat',
-          tabBarIcon: ({color}) =>
-            loggedInUser ? (
-              <Ionicons name="apps-outline" color={color} size={26} />
-            ) : (
-              <Ionicons name="chatbox-outline" color={color} size={26} />
-            ),
+          tabBarLabel: 'Chat',
+          tabBarIcon: ({color}) => (
+            <Ionicons name="chatbox-outline" color={color} size={26} />
+          ),
           headerShown: false,
         })}
       />

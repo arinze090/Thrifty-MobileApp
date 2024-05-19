@@ -135,9 +135,6 @@ const AccountHistory = ({navigation}) => {
         }}
         headerTitle={'Account History'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <View style={styles.accountContainer}>
         <Text style={styles.accountTitle}>Available Balance</Text>

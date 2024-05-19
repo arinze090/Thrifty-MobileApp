@@ -16,7 +16,7 @@ const ThriftyPins = ({optionTitle}) => {
         // borderWidth: 1,
         // borderColor: COLORS.black,
         marginRight: 10,
-        height: windowHeight / 26,
+        height: 40,
       }}
       activeOpacity={1}>
       <Text

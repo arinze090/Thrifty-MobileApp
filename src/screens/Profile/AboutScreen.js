@@ -61,9 +61,6 @@ const AboutScreen = ({navigation}) => {
         }}
         headerTitle={'About Thrifty'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <View style={styles.settings}>
         {about?.map((cur, i) => (

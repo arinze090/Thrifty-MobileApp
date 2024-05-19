@@ -30,9 +30,6 @@ const EditProfile = ({navigation}) => {
         }}
         headerTitle={''}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <View style={{marginTop: 20}}>
         <View style={styles.userContent}>

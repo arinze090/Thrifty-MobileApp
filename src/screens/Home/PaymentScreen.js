@@ -393,9 +393,6 @@ const PaymentScreen = ({navigation, route}) => {
         }}
         headerTitle={''}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView contentContainerStyle={{padding: 20}}>
         <View

@@ -17,12 +17,12 @@ const OrdersCard = ({props, onPress}) => {
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Image
         style={styles.orderImage}
-        source={{uri: props.items[0].cover_image}}
+        source={{uri: props?.items[0]?.cover_image}}
       />
       <View style={styles.orderSection}>
         <View style={styles.orderNameSection}>
-          <Text numberOfLines={2} style={styles.orderName}>
-            {props.items[0].name}
+          <Text numberOfLines={1} style={styles.orderName}>
+            {props?.items[0]?.name}
           </Text>
 
           <Text
@@ -43,10 +43,10 @@ const OrdersCard = ({props, onPress}) => {
           </Text>
           <View style={styles.brand}>
             <Text numberOfLines={1} style={styles.orderDate}>
-              {timestampToDate(parseInt(props.createdAt))}
+              {timestampToDate(parseInt(props?.createdAt))}
             </Text>
             <Text style={styles.orderPrice}>
-              {setPriceTo2DecimalPlaces(props.total_price_paid)}
+              {setPriceTo2DecimalPlaces(props?.total_price_paid)}
             </Text>
           </View>
         </View>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
   },
   orderSection: {
-    marginLeft: 20,
+    marginLeft: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',
     // backgroundColor: 'green',
@@ -82,21 +82,22 @@ const styles = StyleSheet.create({
   },
   orderName: {
     color: COLORS.black,
-    width: windowWidth / 1.1,
+    width: windowWidth / 1.4,
   },
   orderPrice: {
     // width: windowWidth / 9,
     // marginLeft: 10,
     marginRight: 20,
-    // backgroundColor: 'red',
+    color: COLORS.black,
   },
   brand: {
     flexDirection: 'row',
     width: windowWidth / 1.4,
     marginTop: 10,
-    // backgroundColor: 'red',
+    color: COLORS.black,
   },
   orderDate: {
     width: windowWidth / 2.2,
+    color: COLORS.black,
   },
 });

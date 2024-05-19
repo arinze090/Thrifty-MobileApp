@@ -101,9 +101,6 @@ const AddItemConditionScreen = ({navigation}) => {
         }}
         headerTitle={'Add Item Condition'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <View style={{margin: 20}}>
         <Text style={styles.brandsOnThrifty}>

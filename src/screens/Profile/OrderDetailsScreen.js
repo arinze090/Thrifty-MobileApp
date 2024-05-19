@@ -172,9 +172,6 @@ const OrderDetailsScreen = ({route, navigation}) => {
         }}
         headerTitle={'Order Details'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView style={styles.container}>
         {item?.items?.map((cur, i) => (
@@ -247,7 +244,7 @@ const OrderDetailsScreen = ({route, navigation}) => {
               renderLabel={lbl => (
                 <Text
                   style={{
-                    fontSize: 14,
+                    fontSize: 12,
                     textAlign: 'left',
                     marginTop: 8,
                     marginLeft: 10,
@@ -274,11 +271,11 @@ const OrderDetailsScreen = ({route, navigation}) => {
           <View style={{marginLeft: 10}}>
             <Text style={styles.summary}>Delivery Details</Text>
             <Text style={styles.deliverySection}>
-              {item.delivery_details.apt_or_suite_number}{' '}
-              {item.delivery_details.street_address}
-              {','} {item.delivery_details.city}
+              {item?.delivery_details?.apt_or_suite_number}{' '}
+              {item?.delivery_details?.street_address}
+              {','} {item?.delivery_details?.city}
               {', '}
-              {item.delivery_details.state}
+              {item?.delivery_details?.state}
             </Text>
           </View>
         </View>
@@ -356,11 +353,13 @@ const styles = StyleSheet.create({
   },
   deliverySection: {
     fontSize: 14,
+    color: 'black',
   },
   containerInd: {
     // alignItems: 'center',
     borderTopColor: '#212121',
     marginTop: 20,
+    marginBottom: 20,
     // backgroundColor: 'red',
   },
   stepIndicator: {

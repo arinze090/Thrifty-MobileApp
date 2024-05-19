@@ -94,9 +94,6 @@ const SellerOrdersScreen = ({navigation}) => {
         }}
         headerTitle={'Orders'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView
         refreshControl={

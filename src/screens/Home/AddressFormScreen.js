@@ -101,9 +101,6 @@ const AddressFormScreen = ({navigation}) => {
         }}
         headerTitle={'Add Delivery Address'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView>
         <View style={styles.auth}>

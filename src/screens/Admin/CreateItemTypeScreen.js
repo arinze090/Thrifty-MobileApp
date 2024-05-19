@@ -131,9 +131,6 @@ const CreateItemTypeScreen = ({navigation}) => {
         }}
         headerTitle={'Add Item Type'}
         rightIcon={'menu-outline'}
-        onRightIconPress={() => {
-          navigation.openDrawer();
-        }}
       />
       <ScrollView>
         <View style={styles.auth}>
