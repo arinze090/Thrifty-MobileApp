@@ -10,7 +10,7 @@ import HeaderTitle from '../../components/common/HeaderTitle';
 const FavouriteItemsScreen = ({navigation}) => {
   const state = useSelector(state => state);
 
-  const reduxLikedProducts = state.user.likedItems;
+  const reduxLikedProducts = state?.user?.likedItems;
   console.log('reduxLikedProducts', reduxLikedProducts);
   return (
     <View style={styles.container}>

@@ -80,22 +80,6 @@ const AboutScreen = ({navigation}) => {
             />
           </TouchableOpacity>
         ))}
-        <TouchableOpacity
-          style={styles.set}
-          onPress={() => {
-            openWebsite();
-          }}>
-          <View style={styles.setsContent}>
-            <Ionicons name="globe-outline" size={20} color={COLORS.black} />
-            <Text style={styles.settingsText}>Visit Our Website</Text>
-          </View>
-          <Ionicons
-            name="chevron-forward-outline"
-            size={20}
-            color="#333"
-            style={{marginTop: 5}}
-          />
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
