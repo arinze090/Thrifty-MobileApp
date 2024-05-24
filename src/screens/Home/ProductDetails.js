@@ -111,7 +111,7 @@ const DetailsScreen = ({navigation, route, destination}) => {
               }}>
               <TouchableOpacity
                 style={{marginBottom: 10}}
-                onPress={() => navigation.navigate('HomeScreen')}>
+                onPress={() => navigation?.goBack()}>
                 <Ionicons
                   name="arrow-back-outline"
                   size={25}
