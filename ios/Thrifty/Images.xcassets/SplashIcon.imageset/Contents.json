@@ -1,17 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "thriftyLogoBg.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "thriftyLogoBg 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "thriftyLogoBg 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
